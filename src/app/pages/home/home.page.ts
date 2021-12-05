@@ -8,8 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  //taller: Taller | any;
+  titulo = 'Inicio';
   constructor(private authService: AuthService, private router: Router) {}
+
+  cambiarTitulo(titulo){
+    this.titulo = titulo;
+  }
 
   async logOut() {
     await this.authService.logoutUser();

@@ -12,9 +12,20 @@ import { firebaseConfig } from './credenciales';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { ListaTalleresComponent } from './components/lista-talleres/lista-talleres.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    MenuComponent,
+    ListaTalleresComponent,
+    ListaPacientesComponent,
+    HomeComponent
+  ],
   entryComponents: [],
   imports: [
       BrowserModule,
@@ -23,7 +34,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFirestoreModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

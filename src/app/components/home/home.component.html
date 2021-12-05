@@ -1,0 +1,27 @@
+<div class="ion-margin">
+  <br><br><br>
+  <ion-card>
+    <ion-card-header>
+      Horario de atención
+    </ion-card-header>
+    <ion-card-content>
+      <ion-chip color="success">
+        7:00 AM a 6:00 PM
+      </ion-chip>
+      <ion-chip [color]="hora.getHours() >= 7 && hora.getHours() < 18 ? 'success' : 'danger'">
+        {{ hora.getHours() >= 7 && hora.getHours() < 18 ? 'Abierto' : 'Cerrado' }}
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <img src="assets/images/descarga.jpg" alt="" sizes="" srcset="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/descarga2.jpg" alt="" sizes="" srcset="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/descarga3.png" alt="" sizes="" srcset="">
+    </ion-slide>
+  </ion-slides>
+</div>
