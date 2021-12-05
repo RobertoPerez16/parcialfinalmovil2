@@ -1,12 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>LOGIN</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-horizontal">
   <form [formGroup]="formLogin" (ngSubmit)="makeLogin()">
-      <h4>Inicio de Sesión</h4>
       <ion-item>
           <ion-label position="stacked">Email</ion-label>
           <ion-input formControlName="email" type="email" aria-placeholder="email" required></ion-input>
@@ -39,7 +38,16 @@
           Ingresar
       </ion-button>
 
-      <p>No estás registrado?</p> <a routerLink="/register">regístrate</a>
-      <p>Has olvidado la contraseña? </p> <a routerLink="/recover">Recupérala</a>
+      <ion-grid>
+          <ion-row>
+              <ion-col size="12" size-xs="12" size-md="6">
+                  <p>¿No estás registrado?</p> <a routerLink="/register">Regístrate</a>
+              </ion-col>
+
+              <ion-col size="12" size-xs="12" size-md="6">
+                  <p>¿Has olvidado la contraseña? </p> <a routerLink="/recover">Recupérala</a>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
   </form>
 </ion-content>
