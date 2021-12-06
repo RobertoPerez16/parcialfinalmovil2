@@ -23,25 +23,24 @@
         <ion-col sizeSm="12" sizeMd="12" sizeLg="6" size="12">
           <ion-item>
             <ion-label position="floating">Fecha</ion-label>
-            <ion-datetime formControlName="hora"
+            <ion-datetime formControlName="fecha"
                           display-format="MMM DD, YYYY h:mm A"
                           picker-format="MMM DD, YYYY h:mm A">
             </ion-datetime>
           </ion-item>
         </ion-col>
-
         <ion-col sizeSm="12" sizeMd="12" sizeLg="6" size="12">
           <ion-item>
-            <ion-label position="floating">Experto</ion-label>
-            <ion-input type="text" formControlName="experto">
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input type="number" min="0" formControlName="precio">
             </ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col sizeSm="12" sizeMd="12" sizeLg="6" size="12">
           <ion-item>
-            <ion-label position="floating">Precio</ion-label>
-            <ion-input type="number" min="0" formControlName="precio">
+            <ion-label position="floating">Costo</ion-label>
+            <ion-input type="number" formControlName="costo">
             </ion-input>
           </ion-item>
         </ion-col>

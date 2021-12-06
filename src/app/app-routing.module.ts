@@ -33,27 +33,33 @@ const routes: Routes = [
   //rutas parcial 2
   {
     path: 'crear-paciente',
-    loadChildren: () => import('./pages/crear-paciente/crear-paciente.module').then( m => m.CrearPacientePageModule)
+    loadChildren: () => import('./pages/crear-paciente/crear-paciente.module').then( m => m.CrearPacientePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'crear-taller',
-    loadChildren: () => import('./pages/crear-taller/crear-taller.module').then( m => m.CrearTallerPageModule)
+    loadChildren: () => import('./pages/crear-taller/crear-taller.module').then( m => m.CrearTallerPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'detalle-taller/:id',
-    loadChildren: () => import('./pages/detalle-taller/detalle-taller.module').then( m => m.DetalleTallerPageModule)
+    loadChildren: () => import('./pages/detalle-taller/detalle-taller.module').then( m => m.DetalleTallerPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'encuesta-estres',
-    loadChildren: () => import('./pages/encuesta-estres/encuesta-estres.module').then( m => m.EncuestaEstresPageModule)
+    loadChildren: () => import('./pages/encuesta-estres/encuesta-estres.module').then( m => m.EncuestaEstresPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'resultado-encuesta/:datos',
-    loadChildren: () => import('./pages/resultado-encuesta/resultado-encuesta.module').then( m => m.ResultadoEncuestaPageModule)
+    loadChildren: () => import('./pages/resultado-encuesta/resultado-encuesta.module').then( m => m.ResultadoEncuestaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'proximos-pacientes',
-    loadChildren: () => import('./pages/proximos-pacientes/proximos-pacientes.module').then( m => m.ProximosPacientesPageModule)
+    loadChildren: () => import('./pages/proximos-pacientes/proximos-pacientes.module').then( m => m.ProximosPacientesPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

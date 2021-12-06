@@ -15,91 +15,42 @@ export class DetalleTallerPage implements OnInit {
   id: string;
   taller: Taller | any;
   paciente: Paciente | any;
+  nombreInvitado = '';
   arrayInputs = [];
-  pacientesId: Array<string> = [];
-  pacientesPorTaller: any = [];
+  invitados = [];
+  pagoEvento = false;
 
   constructor(private tallerService: TallerService, private activateRoute: ActivatedRoute,
               public alertCtrl: AlertController, private pacienteService: PacienteService,
               public toastController: ToastController) { }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = this.activateRoute.snapshot.paramMap.get('id');
-    this.taller = this.tallerService.obtenerTaller(this.id).valueChanges();
-    this.taller.forEach(tall => {
-      const { pacientes } = tall;
-      this.pacientesPorTaller = [];
-      pacientes.forEach(p => {
-        const parseado = JSON.parse(p);
-        this.pacientesPorTaller.push(parseado);
-      });
-    });
-
-
-    this.paciente = this.pacienteService.obtenerPacientes().valueChanges();
-    this.paciente.forEach(p => {
-        p.forEach(paciente => {
-          this.arrayInputs.push({
-            label: paciente.nombre,
-            type: 'checkbox',
-            value: JSON.stringify(paciente),
-          });
+    const taller = await this.tallerService.obtenerTaller(this.id);
+    this.taller = { ...taller.data(), id: taller.id };
+    const invitados = await this.tallerService.obtenerInvitadosPorTaller(this.taller.id);
+    invitados.forEach(doc => {
+        this.invitados.push({
+          id: doc.id,
+          ...doc.data()
         });
     });
+    console.log(this.invitados);
   }
 
-  async abrirAlertPaciente() {
-    const alertaPaciente = await this.alertCtrl.create({
-      header: 'Selecciona a uno o varios pacientes que deseas agregar al taller',
-      inputs: [...this.arrayInputs],
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Guardar',
-          handler: async data => {
-            this.pacientesId = data;
-            const confirmar = await this.alertCtrl.create({
-              header: 'La lista nueva reemplazará a la anterior, ¿Está seguro de realizar la acción?',
-              buttons: [
-                {
-                  text: 'No',
-                  handler: conf => {
-                    console.log('Cancel clicked');
-                  }
-                },
-                {
-                  text: 'Sí',
-                  handler: conf => {
-                    if(this.pacientesId.length > 0){
-                      this.tallerService.agregarPacienteTaller(this.pacientesId, this.id, this.pacientesId.length).then(
-                          () => {
-                            this.presentToast('Lista de Pacientes Guardada Exitosamente');
-                          },
-                          error => {
-                            console.log('Error: ', error);
-                          }
-                      );
-                    }else{
-                      this.presentToast('Seleccione al menos un paciente');
-                    }
-                  }
-                }
-              ]
-            });
-            await confirmar.present();
-          }
-        }
-      ]
+  agregarInvitado() {
+    if (this.nombreInvitado === '') {
+        alert('No deje campos vacíos');
+        return;
+    }
+    console.log(this.id);
+    this.tallerService.agregarInvitado(this.nombreInvitado, this.pagoEvento, this.id, this.taller.precio).then(data =>{
+      console.log(data);
     });
 
-    await alertaPaciente.present();
   }
+
 
   async abrirAlertComentario() {
     const alertaComentario = await this.alertCtrl.create({

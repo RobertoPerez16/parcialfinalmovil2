@@ -58,5 +58,10 @@ export class AuthService {
     return this.authenticator.signOut();
   }
 
+  getUser() {
+     const user = JSON.parse(localStorage.getItem('user'));
+     return user;
+  }
+
 
 }

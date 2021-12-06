@@ -14,20 +14,20 @@ export class CrearTallerPage implements OnInit {
 
   formTaller = new FormGroup({
     nombre: new FormControl('', Validators.required),
-    hora: new FormControl('', Validators.required),
-    experto: new FormControl('', Validators.required),
+    fecha: new FormControl('', Validators.required),
+    costo: new FormControl(0, Validators.required),
     precio: new FormControl(0, Validators.required)
   });
 
   taller: Taller = {
     id: '',
     nombre: '',
-    hora: '',
+    fecha: '',
     experto: '',
     cantInscritos: 0,
-    pacientes: [],
     comentarios: '',
-    precio: 0
+    precio: 0,
+    costo: 0
   };
 
   constructor(private tallerService: TallerService, public alertCtrl: AlertController,
@@ -40,12 +40,12 @@ export class CrearTallerPage implements OnInit {
     this.taller = {
       id: '',
       nombre: this.formTaller.value.nombre,
-      hora: this.formTaller.value.hora,
+      fecha: this.formTaller.value.fecha,
       experto: this.formTaller.value.experto,
       cantInscritos: 0,
-      pacientes: [],
       comentarios: '',
-      precio: this.formTaller.value.precio
+      precio: this.formTaller.value.precio,
+      costo: this.formTaller.value.costo
     };
 
     const loading = await this.loadingCtrl.create();

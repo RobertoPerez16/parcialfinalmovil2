@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   menu: any = [
-    { title: 'Home', route: '', icon: 'home' },
+    { title: 'Home', route: '/home/home', icon: 'home' },
     { title: 'Crear Paciente', route: 'crear-paciente', icon: 'person' },
     { title: 'Crear Taller', route: 'crear-taller', icon: 'attach' },
     { title: 'Encuesta de Estrés', route: 'encuesta-estres', icon: 'clipboard' },

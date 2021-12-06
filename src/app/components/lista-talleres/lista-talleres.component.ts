@@ -9,12 +9,22 @@ import { TallerService } from 'src/app/services/taller/taller.service';
 })
 export class ListaTalleresComponent implements OnInit {
 
-  taller: Taller | any;
+  taller: Taller | any = [];
 
   constructor(private tallerService: TallerService) {}
 
-  ngOnInit() {
-    this.taller = this.tallerService.obtenerTalleres().valueChanges();
+  async ngOnInit() {
+    const talleres = await this.tallerService.obtenerTalleres();
+    talleres.forEach(doc => {
+      this.taller.push({
+        id: doc.id,
+        nombre: doc.data().nombre,
+        hora: doc.data().fecha,
+        ingresos: doc.data().ingresos,
+        precio: doc.data().precio,
+        costo: doc.data().costo
+      });
+    });
   }
 
 }

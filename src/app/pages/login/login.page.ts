@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
             return;
         }
         this.formLogin.reset();
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home/home');
     }
   }
 

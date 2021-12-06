@@ -1,16 +1,27 @@
 <ion-content class="ion-margin">
-  <br/><br/><br/>
-  <ion-card *ngFor="let t of taller | async " routerLink="/detalle-taller/{{ t.id }}">
-    <ion-card-header>
-      {{ t.nombre }}
-    </ion-card-header>
-    <ion-card-content>
-        <ion-chip color="warning">Fecha: {{ t.hora | date:'dd/MM/YYYY h:mm a' }}</ion-chip>
-        <ion-chip color="danger">Experto: {{ t.experto }}</ion-chip>
-        <ion-chip color="success">Precio: {{ t.precio | currency }}</ion-chip>
-        <ion-chip [color]="t.cantInscritos === 0 ? 'danger': 'success'">
-          Cantidad de Inscritos: {{ t.cantInscritos }}
-        </ion-chip>
-    </ion-card-content>
-  </ion-card>
+    <br/><br/><br/>
+    <div *ngIf="taller.length > 0; else sinTalleres">
+        <ion-card  *ngFor="let t of taller " routerLink="/detalle-taller/{{ t.id }}">
+            <ion-card-header>
+                {{ t.nombre }}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-chip color="warning">Fecha: {{ t?.hora | date:'dd/MM/YYYY h:mm a' }}</ion-chip>
+                <ion-chip color="danger">Costo: {{ t?.costo }}</ion-chip>
+                <ion-chip color="success">Precio: {{ t?.precio | currency }}</ion-chip>
+                <ion-chip [color]="t?.ingresos <= 0 ? 'danger': 'success'">
+                    Cantidad de Ingresos: {{ t?.ingresos }}
+                </ion-chip>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <ng-template #sinTalleres>
+        <center style="margin: 20px 0;">
+            <ion-chip color="danger">No hay talleres creados aún</ion-chip>
+        </center>
+    </ng-template>
 </ion-content>
+
+
+

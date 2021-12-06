@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   //taller: Taller | any;
-  titulo = 'Inicio';
+  titulo = '';
   constructor(private authService: AuthService, private router: Router) {}
 
   cambiarTitulo(titulo){
