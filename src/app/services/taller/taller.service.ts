@@ -51,7 +51,6 @@ export class TallerService {
        const db = firebase.firestore();
        await db.runTransaction(async (t) => {
          const doc = await t.get(anotherRef.doc(idTaller));
-         console.log(doc.data());
          const nuevoIngreso = doc.data().ingresos + precioTaller;
          t.update(anotherRef.doc(idTaller), {ingresos: nuevoIngreso});
        });

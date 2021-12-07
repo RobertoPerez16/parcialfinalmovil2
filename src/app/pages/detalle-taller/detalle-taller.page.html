@@ -21,6 +21,8 @@
             <ion-chip [color]="taller?.ingresos <= 0 ? 'danger': 'success'">
                 Cantidad de Ingresos: {{ taller?.ingresos | currency: ' $' : 'symbol' : '1.0-0' }}
             </ion-chip>
+
+            <p>Cantidad de Invitados que pagaron el evento: {{ this.cantidadPagados }}</p>
         </div>
      </ion-card-content>
   </ion-card>
@@ -62,7 +64,7 @@
   </ion-grid>
 
   <ion-card class="ion-margin-top" *ngIf="invitados.length > 0; else sinInvitados">
-      <ion-card-title class="ion-padding">Pacientes Inscritos:</ion-card-title>
+      <ion-card-title class="ion-padding">Invitados Inscritos:</ion-card-title>
       <ion-card-content>
           <ion-item-divider *ngFor="let paciente of invitados">
               <ion-label>

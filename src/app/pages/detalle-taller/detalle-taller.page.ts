@@ -19,6 +19,7 @@ export class DetalleTallerPage implements OnInit {
   arrayInputs = [];
   invitados = [];
   pagoEvento = false;
+  cantidadPagados = 0;
 
   constructor(private tallerService: TallerService, private activateRoute: ActivatedRoute,
               public alertCtrl: AlertController, private pacienteService: PacienteService,
@@ -36,7 +37,12 @@ export class DetalleTallerPage implements OnInit {
           ...doc.data()
         });
     });
-    console.log(this.invitados);
+
+    this.invitados.forEach(elem => {
+        if (elem.pagoEvento) {
+           this.cantidadPagados+=1;
+        }
+    });
   }
 
   agregarInvitado() {
